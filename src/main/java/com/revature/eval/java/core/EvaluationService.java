@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class EvaluationService {
 	 */
 	public String reverse(String string) {
 		char[] reversed = new char[string.length()];
-		for (int i = reversed.length - 1, j=0; i >= 0; i--, j++) {
+		for (int i = reversed.length - 1, j = 0; i >= 0; i--, j++) {
 			reversed[j] = string.charAt(i);
 		}
 		return new String(reversed);
@@ -31,7 +32,19 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
-		return null;
+
+		// checks if uppercase and adds the letter to the a
+		char[] acronym = new char[phrase.length()];
+		int acronymCounter = 0;
+		for (int i = 0; i < phrase.length(); i++) {
+			char letter = phrase.charAt(i);
+			if (Character.isUpperCase(letter)) {
+				acronym[acronymCounter] = letter;
+			}
+		}
+		String s = new String(acronym);
+		System.out.println(s);
+		return s;
 	}
 
 	/**
@@ -84,20 +97,29 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if (getSideOne() == getSideTwo() && getSideTwo() == getSideThree()) {
+				return true;
+			} else {
+				return false;
+			}
+
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if (getSideOne() == getSideTwo() || getSideTwo() == getSideThree() || getSideOne() == getSideThree()) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if (getSideOne() != getSideTwo() && getSideTwo() != getSideThree() && getSideOne() != getSideThree()) {
+				return true;
+			} else {
+				return false;
+			}
 		}
-
 	}
 
 	/**
@@ -116,8 +138,67 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		// uses switch statements to convert letters to a score
+		char letter ;
+		int score = 0;
+		string = string.toUpperCase();
+		for(int i = 0; i< string.length(); i ++ ) {
+			letter = string.charAt(i);
+		
+			switch(letter) {
+			case 'A' : score++;
+			break;
+			case 'E' : score++;
+			break;
+			case 'I' : score++;
+			break;
+			case 'O' : score++;
+			break;
+			case 'U' : score++;
+			break;
+			case 'L' : score++;
+			break;
+			case 'N' : score++;
+			break;
+			case 'R' : score++;
+			break;
+			case 'S' : score++;
+			break;
+			case 'T' : score++;
+			break;
+			case 'G' : score+=2;
+			break;
+			case 'B' : score+=3;
+			break;
+			case 'C' : score+=3;
+			break;
+			case 'M' : score+=3;
+			break;
+			case 'P' : score+=3;
+			break;
+			case 'F' : score+=4;
+			break;
+			case 'H' : score+=4;
+			break;
+			case 'V' : score+=4;
+			break;
+			case 'W' : score+=4;
+			break;
+			case 'Y' : score+=4;
+			break;
+			case 'K' : score+=5;
+			break;
+			case 'J' : score+=8;
+			break;
+			case 'X' : score+=8;
+			break;
+			case 'Q' : score+=10;
+			break;
+			case 'Z' : score+=10;
+			break;
+				}
+		}
+		return score;
 	}
 
 	/**
@@ -152,8 +233,51 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		//currently makes a clean number without exceptions
+		// TODO allow for illegal argument exceptions
+		char letter;
+		String cleanNumber = "";
+		for(int i = 0; i < string.length(); i++) {
+			letter = string.charAt(i);
+			int numOfNumbers=0;
+			switch(letter) {
+			case '9': cleanNumber += "9";
+			numOfNumbers++;
+			break;
+			case '8': cleanNumber += "8";
+			numOfNumbers++;
+			break;
+			case '7': cleanNumber += "7";
+			numOfNumbers++;
+			break;
+			case '6': cleanNumber += "6";
+			numOfNumbers++;
+			break;
+			case '5': cleanNumber += "5";
+			numOfNumbers++;
+			break;
+			case '4': cleanNumber += "4";
+			numOfNumbers++;
+			break;
+			case '3': cleanNumber += "3";
+			numOfNumbers++;
+			break;
+			case '2': cleanNumber += "2";
+			numOfNumbers++;
+			break;
+			case '1': cleanNumber += "1";
+			numOfNumbers++;
+			break;
+			case '0': cleanNumber += "0";
+			numOfNumbers++;
+			break;
+			default: break;
+			}
+			if(numOfNumbers> 11) {
+				throw new IllegalArgumentException();
+			}
+		}
+		return cleanNumber;
 	}
 
 	/**
@@ -167,6 +291,11 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		// TODO Write an implementation for this method declaration
+		String[] words = string.split(" ");
+		HashMap hm = new HashMap();
+		for(String word: words) {
+			
+		}
 		return null;
 	}
 
@@ -210,6 +339,7 @@ public class EvaluationService {
 
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
+			// sort by using numbers
 			return 0;
 		}
 
@@ -266,7 +396,18 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
+		int length = String.valueOf(input).length();
+		int[] digits = new int[length];
+		int i = 0;
+		int sum;
+		while (input > 0) {
+			digits[i] = input % 10;
+			input = input / 10;
+			i++;
+		}
+		for (int k = 0; k < length; k++) {
+			sum = (int) Math.pow(digits[k], length);
+		}
 		return false;
 	}
 
@@ -339,8 +480,23 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int[] primes = new int[i];
+		boolean isPrime = false;
+		int x = 1;
+		for (int j = 0; j < i; j++) {
+			isPrime = false;
+			while (!isPrime) {
+				x++;
+				for (int k = 2; k * 2 < x; k++) {
+					if (x % k == 0) {
+						isPrime = true;
+						primes[j] = x;
+					}
+				}
+			}
+		}
+
+		return primes[i];
 	}
 
 	/**
@@ -464,8 +620,15 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int sum = 0;
+		for (int j = 0; j < i; i++) {
+			for (int k = 0; k < set.length; k++) {
+				if (j % set[k] == 0) {
+					sum++;
+				}
+			}
+		}
+		return sum;
 	}
 
 	/**

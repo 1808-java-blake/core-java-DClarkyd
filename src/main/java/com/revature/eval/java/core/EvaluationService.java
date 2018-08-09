@@ -1071,20 +1071,49 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
+		// TODO Write an implementation for negatives
 
 		String[] word = string.split(" ");
 		
 		for(int i =2; i < word.length; i++) {
+			
 			word[i] = word[i].replaceAll("\\W", "");
 //			System.out.println(word[i]);
 		}
+		int one = Integer.parseInt(word[2]);
+		int two = Integer.parseInt(word[4]);
+		if(word[2].contains("-")) {
+			one *= -1;
+			System.out.println(one);
+		}
+		if(word[4].contains("-")) {
+			two *= -1;
+			System.out.println(two);
+		}
+//		if(word[5].contains("-")) {
+//			two = -two;
+//		}
 		switch(word[3]) {
 		case "plus": 
-			int result = Integer.parseInt(word[2]) + Integer.parseInt(word[4]);
+		
+			int result = one + two;
 			return result;
-		}
+		
+	case "minus": 
+		 result = one - two;
+		return result;
+	
+
+	case"divided":
+	 result = Integer.parseInt(word[2]) / Integer.parseInt(word[5]);
+	return result;
+	
+	case"multiplied":
+		 result = Integer.parseInt(word[2]) * Integer.parseInt(word[5]);
+		return result;
+	
+			}
 		return 0;
-	}
+		}
 
 }

@@ -469,6 +469,7 @@ public class EvaluationServiceTest {
 
 	@Test
 	public void testEncodeOmgInCapital() {
+		assertEquals("lnt", EvaluationService.AtbashCipher.encode("OMG"));
 	}
 
 	@Test

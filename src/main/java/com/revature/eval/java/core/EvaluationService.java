@@ -422,7 +422,24 @@ public class EvaluationService {
 	 */
 	public String toPigLatin(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		String[] words = string.split(" ");
+		String word;
+		for( int i = 0; i < words.length; i++) {
+			switch(word.charAt(0)) {
+			case 'a': word = word + "ay";
+			System.out.println(word);
+				break;
+			case 'e': word = word + "ay";
+			break;
+			case 'i': word = word + "ay";
+			break;
+			case 'o': word = word + "ay";
+			break;
+			case 'u': word = word + "ay";
+			break;
+			}
+		}
+		
 	}
 
 	/**
@@ -1071,49 +1088,48 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for negatives
+		// TODO Write an implementation for fixing the out of bounds error
+		//and fix the basic addition case;
 
 		String[] word = string.split(" ");
-		
-		for(int i =2; i < word.length; i++) {
-			
+		int one = 1;
+		int two = 1;
+		if (word[2].contains("-")) {
+			one = -1;
+//			System.out.println(one);
+		}
+		if (word[4].contains("-") || word[5].contains("-")) {
+			two = -1;
+//			System.out.println(two);
+		}
+		for (int i = 2; i < word.length; i++) {
 			word[i] = word[i].replaceAll("\\W", "");
-//			System.out.println(word[i]);
 		}
-		int one = Integer.parseInt(word[2]);
-		int two = Integer.parseInt(word[4]);
-		if(word[2].contains("-")) {
-			one *= -1;
-			System.out.println(one);
-		}
-		if(word[4].contains("-")) {
-			two *= -1;
-			System.out.println(two);
-		}
-//		if(word[5].contains("-")) {
-//			two = -two;
-//		}
-		switch(word[3]) {
-		case "plus": 
-		
+		switch (word[3]) {
+		case "plus":
+			one *= Integer.parseInt(word[2]);
+			two *= Integer.parseInt(word[4]);
 			int result = one + two;
 			return result;
-		
-	case "minus": 
-		 result = one - two;
-		return result;
-	
 
-	case"divided":
-	 result = Integer.parseInt(word[2]) / Integer.parseInt(word[5]);
-	return result;
-	
-	case"multiplied":
-		 result = Integer.parseInt(word[2]) * Integer.parseInt(word[5]);
-		return result;
-	
-			}
-		return 0;
+		case "minus":
+			one *= Integer.parseInt(word[2]);
+			two *= Integer.parseInt(word[4]);
+			result = one - two;
+			return result;
+
+		case "divided":
+			one *= Integer.parseInt(word[2]);
+			two *= Integer.parseInt(word[5]);
+			result = one/two;
+			return result;
+
+		case "multiplied":
+			one *= Integer.parseInt(word[2]);
+			two *= Integer.parseInt(word[5]);
+			result = one * two;
+			return result;
 		}
-
+		return 0;
+	}
 }

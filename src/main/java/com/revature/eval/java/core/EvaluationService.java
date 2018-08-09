@@ -987,7 +987,80 @@ public class EvaluationService {
 	 */
 	public boolean isPangram(String string) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		boolean[] truthTable = new boolean[26];
+		boolean isPangram = true;
+		for(int i = 0; i < 25; i++) {
+			truthTable[i] = false;
+		}
+		if (string == "") {
+			return false;
+		} else {
+			for (int i = 0; i < string.length(); i++) {
+				switch(string.charAt(i)) {
+				case 'a': truthTable[0] = true;
+				break;
+				case 'b': truthTable[1] = true;
+				break;
+				case 'c': truthTable[2] = true;
+				break;
+				case 'd': truthTable[3] = true;
+				break;
+				case 'e': truthTable[4] = true;
+				break;
+				case 'f': truthTable[5] = true;
+				break;
+				case 'g': truthTable[6] = true;
+				break;
+				case 'h': truthTable[7] = true;
+				break;
+				case 'i': truthTable[8] = true;
+				break;
+				case 'j': truthTable[9] = true;
+				break;
+				case 'k': truthTable[10] = true;
+				break;
+				case 'l': truthTable[11] = true;
+				break;
+				case 'm': truthTable[12] = true;
+				break;
+				case 'n': truthTable[13] = true;
+				break;
+				case 'o': truthTable[14] = true;
+				break;
+				case 'p': truthTable[15] = true;
+				break;
+				case 'q': truthTable[16] = true;
+				break;
+				case 'r': truthTable[17] = true;
+				break;
+				case 's': truthTable[18] = true;
+				break;
+				case 't': truthTable[19] = true;
+				break;
+				case 'u': truthTable[20] = true;
+				break;
+				case 'v': truthTable[21] = true;
+				break;
+				case 'w': truthTable[22] = true;
+				break;
+				case 'x': truthTable[23] = true;
+				break;
+				case 'y': truthTable[24] = true;
+				break;
+				case 'z': truthTable[25] = true;
+				break;
+				}
+				
+//				System.out.println(string.charAt(i));
+			}
+			for(int i = 0; i<truthTable.length; i++) {
+				if(truthTable[i]==false) {
+					isPangram =  false;
+				}
+			}
+
+		}
+		return isPangram;
 	}
 
 	/**
@@ -1023,13 +1096,13 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		//finds the multiples of a number and adds them
+		// finds the multiples of a number and adds them
 		int sum = 0;
 		boolean[] truthTable = new boolean[i];
-		for (int j = 0; j<i; j++) {
+		for (int j = 0; j < i; j++) {
 			truthTable[j] = false;
 		}
-		
+
 		for (int j = 0; j < i; j++) {
 			for (int k = 0; k < set.length; k++) {
 				if (j % set[k] == 0) {

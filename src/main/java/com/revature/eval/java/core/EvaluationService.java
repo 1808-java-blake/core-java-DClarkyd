@@ -424,27 +424,35 @@ public class EvaluationService {
 		// TODO implement multiple words
 		String[] words = string.split(" ");
 		String word = "";
-		for( int i = 0; i < words.length; i++) {
-			switch(words[i].charAt(0)) {
-			case 'a': word = words[i] + "ay";
-			System.out.println(word);
+		for (int i = 0; i < words.length; i++) {
+			switch (words[i].charAt(0)) {
+			case 'a':
+				word = words[i] + "ay";
+				System.out.println(word);
 				break;
-			case 'e': word = words[i] + "ay";
-			break;
-			case 'i': word = words[i] + "ay";
-			break;
-			case 'o': word = words[i] + "ay";
-			break;
-			case 'u': word = words[i] + "ay";
-			break;
-			case 't': word = words[i].replaceAll("th", "") +"th" + "ay";
-			break;
-			case 's': word = words[i].replaceAll("sch", "") + "sch" + "ay";
-			break;
-			case 'y': word = words[i].replaceAll("y", "") + "y" + "ay";
-			break;
+			case 'e':
+				word = words[i] + "ay";
+				break;
+			case 'i':
+				word = words[i] + "ay";
+				break;
+			case 'o':
+				word = words[i] + "ay";
+				break;
+			case 'u':
+				word = words[i] + "ay";
+				break;
+			case 't':
+				word = words[i].replaceAll("th", "") + "th" + "ay";
+				break;
+			case 's':
+				word = words[i].replaceAll("sch", "") + "sch" + "ay";
+				break;
+			case 'y':
+				word = words[i].replaceAll("y", "") + "y" + "ay";
+				break;
 			}
-			
+
 		}
 		return word;
 	}
@@ -1015,11 +1023,21 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
+		//finds the multiples of a number and adds them
 		int sum = 0;
-		for (int j = 0; j < i; i++) {
+		boolean[] truthTable = new boolean[i];
+		for (int j = 0; j<i; j++) {
+			truthTable[j] = false;
+		}
+		
+		for (int j = 0; j < i; j++) {
 			for (int k = 0; k < set.length; k++) {
 				if (j % set[k] == 0) {
-					sum++;
+					if (truthTable[j] == false) {
+						sum += j;
+					}
+					truthTable[j] = true;
+					System.out.println(sum);
 				}
 			}
 		}
@@ -1096,7 +1114,7 @@ public class EvaluationService {
 	 */
 	public int solveWordProblem(String string) {
 		// TODO Write an implementation for fixing the out of bounds error
-		//and fix the basic addition case;
+		// and fix the basic addition case;
 
 		String[] word = string.split(" ");
 		int one = 1;
@@ -1128,7 +1146,7 @@ public class EvaluationService {
 		case "divided":
 			one *= Integer.parseInt(word[2]);
 			two *= Integer.parseInt(word[5]);
-			result = one/two;
+			result = one / two;
 			return result;
 
 		case "multiplied":

@@ -541,8 +541,48 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			// rotates a string by a given amount
+			char[] letters = new char[string.length()];
+			int[] newNumbers = new int[string.length()];
+			int[] numbers = new int[string.length()];
+			String newString = "";
+			for (int i = 0; i< string.length(); i++) {
+				letters[i] = string.charAt(i);
+				numbers[i] = (int)letters[i];
+				//if is uppercase
+				if(numbers[i]> 64 && numbers[i] < 91) {
+					int rotate = numbers[i] + key;
+					int leftover = rotate - 90;
+					if(rotate>90) {
+						newNumbers[i] = 64 + leftover;
+					}
+					else {
+						newNumbers[i] = numbers[i] + key;
+//						System.out.println(newNumbers[i]);
+					}
+				}
+				
+				//if is lowercase
+				else if(numbers[i]> 96 && numbers[i] < 123) {
+					int rotate = numbers[i] + key;
+					int leftover = rotate - 122;
+					if(rotate>122) {
+						newNumbers[i] = 96 + leftover;
+					}
+					else {
+						newNumbers[i] = numbers[i] + key;
+					}
+				}
+				else {
+					newNumbers[i] = numbers[i];
+				}
+			}
+			for (int i = 0; i<string.length(); i ++) {
+
+				newString += (char)newNumbers[i];
+			}
+			
+			return newString;
 		}
 
 	}

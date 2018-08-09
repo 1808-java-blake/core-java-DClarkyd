@@ -1,5 +1,9 @@
 package com.revature.eval.java.core;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.Temporal;
 import java.util.HashMap;
 import java.util.List;
@@ -139,64 +143,89 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// uses switch statements to convert letters to a score
-		char letter ;
+		char letter;
 		int score = 0;
 		string = string.toUpperCase();
-		for(int i = 0; i< string.length(); i ++ ) {
+		for (int i = 0; i < string.length(); i++) {
 			letter = string.charAt(i);
-		
-			switch(letter) {
-			case 'A' : score++;
-			break;
-			case 'E' : score++;
-			break;
-			case 'I' : score++;
-			break;
-			case 'O' : score++;
-			break;
-			case 'U' : score++;
-			break;
-			case 'L' : score++;
-			break;
-			case 'N' : score++;
-			break;
-			case 'R' : score++;
-			break;
-			case 'S' : score++;
-			break;
-			case 'T' : score++;
-			break;
-			case 'G' : score+=2;
-			break;
-			case 'B' : score+=3;
-			break;
-			case 'C' : score+=3;
-			break;
-			case 'M' : score+=3;
-			break;
-			case 'P' : score+=3;
-			break;
-			case 'F' : score+=4;
-			break;
-			case 'H' : score+=4;
-			break;
-			case 'V' : score+=4;
-			break;
-			case 'W' : score+=4;
-			break;
-			case 'Y' : score+=4;
-			break;
-			case 'K' : score+=5;
-			break;
-			case 'J' : score+=8;
-			break;
-			case 'X' : score+=8;
-			break;
-			case 'Q' : score+=10;
-			break;
-			case 'Z' : score+=10;
-			break;
-				}
+
+			switch (letter) {
+			case 'A':
+				score++;
+				break;
+			case 'E':
+				score++;
+				break;
+			case 'I':
+				score++;
+				break;
+			case 'O':
+				score++;
+				break;
+			case 'U':
+				score++;
+				break;
+			case 'L':
+				score++;
+				break;
+			case 'N':
+				score++;
+				break;
+			case 'R':
+				score++;
+				break;
+			case 'S':
+				score++;
+				break;
+			case 'T':
+				score++;
+				break;
+			case 'G':
+				score += 2;
+				break;
+			case 'B':
+				score += 3;
+				break;
+			case 'C':
+				score += 3;
+				break;
+			case 'M':
+				score += 3;
+				break;
+			case 'P':
+				score += 3;
+				break;
+			case 'F':
+				score += 4;
+				break;
+			case 'H':
+				score += 4;
+				break;
+			case 'V':
+				score += 4;
+				break;
+			case 'W':
+				score += 4;
+				break;
+			case 'Y':
+				score += 4;
+				break;
+			case 'K':
+				score += 5;
+				break;
+			case 'J':
+				score += 8;
+				break;
+			case 'X':
+				score += 8;
+				break;
+			case 'Q':
+				score += 10;
+				break;
+			case 'Z':
+				score += 10;
+				break;
+			}
 		}
 		return score;
 	}
@@ -233,47 +262,58 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		//currently makes a clean number without exceptions
+		// currently makes a clean number without exceptions
 		// TODO allow for illegal argument exceptions
 		char letter;
 		String cleanNumber = "";
-		for(int i = 0; i < string.length(); i++) {
+		for (int i = 0; i < string.length(); i++) {
 			letter = string.charAt(i);
-			int numOfNumbers=0;
-			switch(letter) {
-			case '9': cleanNumber += "9";
-			numOfNumbers++;
-			break;
-			case '8': cleanNumber += "8";
-			numOfNumbers++;
-			break;
-			case '7': cleanNumber += "7";
-			numOfNumbers++;
-			break;
-			case '6': cleanNumber += "6";
-			numOfNumbers++;
-			break;
-			case '5': cleanNumber += "5";
-			numOfNumbers++;
-			break;
-			case '4': cleanNumber += "4";
-			numOfNumbers++;
-			break;
-			case '3': cleanNumber += "3";
-			numOfNumbers++;
-			break;
-			case '2': cleanNumber += "2";
-			numOfNumbers++;
-			break;
-			case '1': cleanNumber += "1";
-			numOfNumbers++;
-			break;
-			case '0': cleanNumber += "0";
-			numOfNumbers++;
-			break;
-			default: break;
+			int numOfNumbers = 0;
+			switch (letter) {
+			case '9':
+				cleanNumber += "9";
+				numOfNumbers++;
+				break;
+			case '8':
+				cleanNumber += "8";
+				numOfNumbers++;
+				break;
+			case '7':
+				cleanNumber += "7";
+				numOfNumbers++;
+				break;
+			case '6':
+				cleanNumber += "6";
+				numOfNumbers++;
+				break;
+			case '5':
+				cleanNumber += "5";
+				numOfNumbers++;
+				break;
+			case '4':
+				cleanNumber += "4";
+				numOfNumbers++;
+				break;
+			case '3':
+				cleanNumber += "3";
+				numOfNumbers++;
+				break;
+			case '2':
+				cleanNumber += "2";
+				numOfNumbers++;
+				break;
+			case '1':
+				cleanNumber += "1";
+				numOfNumbers++;
+				break;
+			case '0':
+				cleanNumber += "0";
+				numOfNumbers++;
+				break;
+			default:
+				break;
 			}
-			if(numOfNumbers> 11) {
+			if (numOfNumbers > 11) {
 				throw new IllegalArgumentException();
 			}
 		}
@@ -290,11 +330,16 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
+		// TODO count each repeated word
 		String[] words = string.split(" ");
-		HashMap hm = new HashMap();
-		for(String word: words) {
-			
+		Map<String, Integer> wordsAndNumbers = new HashMap<String, Integer>();
+
+		for (String word : words) {
+			if (true) {
+				int count = wordsAndNumbers.get(int.class);
+				count++;
+				wordsAndNumbers.put(word, count);
+			}
 		}
 		return null;
 	}
@@ -397,18 +442,21 @@ public class EvaluationService {
 	 */
 	public boolean isArmstrongNumber(int input) {
 		int length = String.valueOf(input).length();
+//		System.out.println(length);
 		int[] digits = new int[length];
 		int i = 0;
-		int sum;
-		while (input > 0) {
-			digits[i] = input % 10;
-			input = input / 10;
-			i++;
+		int sum = 0;
+		for (int p = 0; p < length; p++) {
+			digits[p] = input % 10;
+			input /= 10;
 		}
 		for (int k = 0; k < length; k++) {
 			sum = (int) Math.pow(digits[k], length);
 		}
-		return false;
+		if (sum == input) {
+			return true;
+		} else
+			return false;
 	}
 
 	/**
@@ -480,6 +528,9 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
+		if (i == 0) {
+			throw new IllegalArgumentException();
+		}
 		int[] primes = new int[i];
 		boolean isPrime = false;
 		int x = 1;
@@ -496,7 +547,8 @@ public class EvaluationService {
 			}
 		}
 
-		return primes[i];
+		return primes[i - 1];
+
 	}
 
 	/**
@@ -532,8 +584,169 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			// encodes the text
+
+			string = string.replaceAll(" ", "");
+			string = string.toLowerCase();
+			string = string.replaceAll("\\W", "");
+			String encoded = "";
+			int spacesCounter = -1;
+			for (int i = 0; i < string.length(); i++) {
+				char letter = string.charAt(i);
+				spacesCounter++;
+				if (spacesCounter % 5 == 0 && spacesCounter != 0) {
+					encoded += " ";
+				}
+				switch (letter) {
+				case '0':
+					letter = '0';
+					encoded += letter;
+					break;
+				case '1':
+					letter = '1';
+					encoded += letter;
+					break;
+				case '2':
+					letter = '2';
+					encoded += letter;
+					break;
+				case '3':
+					letter = '3';
+					encoded += letter;
+					break;
+				case '4':
+					letter = '4';
+					encoded += letter;
+					break;
+				case '5':
+					letter = '5';
+					encoded += letter;
+					break;
+				case '6':
+					letter = '6';
+					encoded += letter;
+					break;
+				case '7':
+					letter = '7';
+					encoded += letter;
+					break;
+				case '8':
+					letter = '8';
+					encoded += letter;
+					break;
+				case '9':
+					letter = '9';
+					encoded += letter;
+					break;
+				case 'a':
+					letter = 'z';
+					encoded += letter;
+					break;
+				case 'b':
+					letter = 'y';
+					encoded += letter;
+					break;
+				case 'c':
+					letter = 'x';
+					encoded += letter;
+					break;
+				case 'd':
+					letter = 'w';
+					encoded += letter;
+					break;
+				case 'e':
+					letter = 'v';
+					encoded += letter;
+					break;
+				case 'f':
+					letter = 'u';
+					encoded += letter;
+					break;
+				case 'g':
+					letter = 't';
+					encoded += letter;
+					break;
+				case 'h':
+					letter = 's';
+					encoded += letter;
+					break;
+				case 'i':
+					letter = 'r';
+					encoded += letter;
+					break;
+				case 'j':
+					letter = 'q';
+					encoded += letter;
+					break;
+				case 'k':
+					letter = 'p';
+					encoded += letter;
+					break;
+				case 'l':
+					letter = 'o';
+					encoded += letter;
+					break;
+				case 'm':
+					letter = 'n';
+					encoded += letter;
+					break;
+				case 'n':
+					letter = 'm';
+					encoded += letter;
+					break;
+				case 'o':
+					letter = 'l';
+					encoded += letter;
+					break;
+				case 'p':
+					letter = 'k';
+					encoded += letter;
+					break;
+				case 'q':
+					letter = 'j';
+					encoded += letter;
+					break;
+				case 'r':
+					letter = 'i';
+					encoded += letter;
+					break;
+				case 's':
+					letter = 'h';
+					encoded += letter;
+					break;
+				case 't':
+					letter = 'g';
+					encoded += letter;
+					break;
+				case 'u':
+					letter = 'f';
+					encoded += letter;
+					break;
+				case 'v':
+					letter = 'e';
+					encoded += letter;
+					break;
+				case 'w':
+					letter = 'd';
+					encoded += letter;
+					break;
+				case 'x':
+					letter = 'c';
+					encoded += letter;
+					break;
+				case 'y':
+					letter = 'b';
+					encoded += letter;
+					break;
+				case 'z':
+					letter = 'a';
+					encoded += letter;
+					break;
+				}
+
+			}
+
+			return encoded;
 		}
 
 		/**
@@ -543,8 +756,160 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			// decodes the text
+			string = string.replaceAll(" ", "");
+			String decoded = "";
+			for (int i = 0; i < string.length(); i++) {
+				char letter = string.charAt(i);
+
+				switch (letter) {
+				case '0':
+					letter = '0';
+					decoded += letter;
+					break;
+				case '1':
+					letter = '1';
+					decoded += letter;
+					break;
+				case '2':
+					letter = '2';
+					decoded += letter;
+					break;
+				case '3':
+					letter = '3';
+					decoded += letter;
+					break;
+				case '4':
+					letter = '4';
+					decoded += letter;
+					break;
+				case '5':
+					letter = '5';
+					decoded += letter;
+					break;
+				case '6':
+					letter = '6';
+					decoded += letter;
+					break;
+				case '7':
+					letter = '7';
+					decoded += letter;
+					break;
+				case '8':
+					letter = '8';
+					decoded += letter;
+					break;
+				case '9':
+					letter = '9';
+					decoded += letter;
+					break;
+				case 'a':
+					letter = 'z';
+					decoded += letter;
+					break;
+				case 'b':
+					letter = 'y';
+					decoded += letter;
+					break;
+				case 'c':
+					letter = 'x';
+					decoded += letter;
+					break;
+				case 'd':
+					letter = 'w';
+					decoded += letter;
+					break;
+				case 'e':
+					letter = 'v';
+					decoded += letter;
+					break;
+				case 'f':
+					letter = 'u';
+					decoded += letter;
+					break;
+				case 'g':
+					letter = 't';
+					decoded += letter;
+					break;
+				case 'h':
+					letter = 's';
+					decoded += letter;
+					break;
+				case 'i':
+					letter = 'r';
+					decoded += letter;
+					break;
+				case 'j':
+					letter = 'q';
+					decoded += letter;
+					break;
+				case 'k':
+					letter = 'p';
+					decoded += letter;
+					break;
+				case 'l':
+					letter = 'o';
+					decoded += letter;
+					break;
+				case 'm':
+					letter = 'n';
+					decoded += letter;
+					break;
+				case 'n':
+					letter = 'm';
+					decoded += letter;
+					break;
+				case 'o':
+					letter = 'l';
+					decoded += letter;
+					break;
+				case 'p':
+					letter = 'k';
+					decoded += letter;
+					break;
+				case 'q':
+					letter = 'j';
+					decoded += letter;
+					break;
+				case 'r':
+					letter = 'i';
+					decoded += letter;
+					break;
+				case 's':
+					letter = 'h';
+					decoded += letter;
+					break;
+				case 't':
+					letter = 'g';
+					decoded += letter;
+					break;
+				case 'u':
+					letter = 'f';
+					decoded += letter;
+					break;
+				case 'v':
+					letter = 'e';
+					decoded += letter;
+					break;
+				case 'w':
+					letter = 'd';
+					decoded += letter;
+					break;
+				case 'x':
+					letter = 'c';
+					decoded += letter;
+					break;
+				case 'y':
+					letter = 'b';
+					decoded += letter;
+					break;
+				case 'z':
+					letter = 'a';
+					decoded += letter;
+					break;
+				}
+			}
+			return decoded;
 		}
 	}
 
@@ -602,8 +967,14 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		// In case,time not included
+		if (given instanceof LocalDate) {
+			LocalDateTime time = LocalDateTime.of((LocalDate) given, LocalTime.MIN);
+			return time.plus(Duration.ofSeconds(1000000000l));
+		}
+		// if time is included
+		LocalDateTime time = LocalDateTime.from(given);
+		return time.plus(Duration.ofSeconds(1000000000l));
 	}
 
 	/**
@@ -701,6 +1072,18 @@ public class EvaluationService {
 	 */
 	public int solveWordProblem(String string) {
 		// TODO Write an implementation for this method declaration
+
+		String[] word = string.split(" ");
+		
+		for(int i =2; i < word.length; i++) {
+			word[i] = word[i].replaceAll("\\W", "");
+//			System.out.println(word[i]);
+		}
+		switch(word[3]) {
+		case "plus": 
+			int result = Integer.parseInt(word[2]) + Integer.parseInt(word[4]);
+			return result;
+		}
 		return 0;
 	}
 

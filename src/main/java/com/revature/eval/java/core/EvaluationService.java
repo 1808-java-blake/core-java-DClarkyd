@@ -421,25 +421,32 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
+		// TODO implement multiple words
 		String[] words = string.split(" ");
-		String word;
+		String word = "";
 		for( int i = 0; i < words.length; i++) {
-			switch(word.charAt(0)) {
-			case 'a': word = word + "ay";
+			switch(words[i].charAt(0)) {
+			case 'a': word = words[i] + "ay";
 			System.out.println(word);
 				break;
-			case 'e': word = word + "ay";
+			case 'e': word = words[i] + "ay";
 			break;
-			case 'i': word = word + "ay";
+			case 'i': word = words[i] + "ay";
 			break;
-			case 'o': word = word + "ay";
+			case 'o': word = words[i] + "ay";
 			break;
-			case 'u': word = word + "ay";
+			case 'u': word = words[i] + "ay";
+			break;
+			case 't': word = words[i].replaceAll("th", "") +"th" + "ay";
+			break;
+			case 's': word = words[i].replaceAll("sch", "") + "sch" + "ay";
+			break;
+			case 'y': word = words[i].replaceAll("y", "") + "y" + "ay";
 			break;
 			}
+			
 		}
-		
+		return word;
 	}
 
 	/**

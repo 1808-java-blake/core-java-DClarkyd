@@ -35,19 +35,28 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
+		// TODO get all uppercase and without white space
 
 		// checks if uppercase and adds the letter to the a
 		char[] acronym = new char[phrase.length()];
-		int acronymCounter = 0;
+		int numOfLetters = 0;
+		String s = "";
+		
 		for (int i = 0; i < phrase.length(); i++) {
 			char letter = phrase.charAt(i);
+			System.out.println(Character.isUpperCase(letter));
 			if (Character.isUpperCase(letter)) {
-				acronym[acronymCounter] = letter;
+				acronym[numOfLetters] = letter;
+				numOfLetters++;
 			}
 		}
-		String s = new String(acronym);
-		System.out.println(s);
+//		System.out.println(numOfLetters);
+		for (int i = 0; i < numOfLetters; i++) {
+//			System.out.println(acronym[i]);
+			s += acronym[i];
+		}
+
+//		System.out.println(s);
 		return s;
 	}
 
@@ -546,42 +555,39 @@ public class EvaluationService {
 			int[] newNumbers = new int[string.length()];
 			int[] numbers = new int[string.length()];
 			String newString = "";
-			for (int i = 0; i< string.length(); i++) {
+			for (int i = 0; i < string.length(); i++) {
 				letters[i] = string.charAt(i);
-				numbers[i] = (int)letters[i];
-				//if is uppercase
-				if(numbers[i]> 64 && numbers[i] < 91) {
+				numbers[i] = (int) letters[i];
+				// if is uppercase
+				if (numbers[i] > 64 && numbers[i] < 91) {
 					int rotate = numbers[i] + key;
 					int leftover = rotate - 90;
-					if(rotate>90) {
+					if (rotate > 90) {
 						newNumbers[i] = 64 + leftover;
-					}
-					else {
+					} else {
 						newNumbers[i] = numbers[i] + key;
 //						System.out.println(newNumbers[i]);
 					}
 				}
-				
-				//if is lowercase
-				else if(numbers[i]> 96 && numbers[i] < 123) {
+
+				// if is lowercase
+				else if (numbers[i] > 96 && numbers[i] < 123) {
 					int rotate = numbers[i] + key;
 					int leftover = rotate - 122;
-					if(rotate>122) {
+					if (rotate > 122) {
 						newNumbers[i] = 96 + leftover;
-					}
-					else {
+					} else {
 						newNumbers[i] = numbers[i] + key;
 					}
-				}
-				else {
+				} else {
 					newNumbers[i] = numbers[i];
 				}
 			}
-			for (int i = 0; i<string.length(); i ++) {
+			for (int i = 0; i < string.length(); i++) {
 
-				newString += (char)newNumbers[i];
+				newString += (char) newNumbers[i];
 			}
-			
+
 			return newString;
 		}
 
@@ -1029,73 +1035,99 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		boolean[] truthTable = new boolean[26];
 		boolean isPangram = true;
-		for(int i = 0; i < 25; i++) {
+		for (int i = 0; i < 25; i++) {
 			truthTable[i] = false;
 		}
 		if (string == "") {
 			return false;
 		} else {
 			for (int i = 0; i < string.length(); i++) {
-				switch(string.charAt(i)) {
-				case 'a': truthTable[0] = true;
-				break;
-				case 'b': truthTable[1] = true;
-				break;
-				case 'c': truthTable[2] = true;
-				break;
-				case 'd': truthTable[3] = true;
-				break;
-				case 'e': truthTable[4] = true;
-				break;
-				case 'f': truthTable[5] = true;
-				break;
-				case 'g': truthTable[6] = true;
-				break;
-				case 'h': truthTable[7] = true;
-				break;
-				case 'i': truthTable[8] = true;
-				break;
-				case 'j': truthTable[9] = true;
-				break;
-				case 'k': truthTable[10] = true;
-				break;
-				case 'l': truthTable[11] = true;
-				break;
-				case 'm': truthTable[12] = true;
-				break;
-				case 'n': truthTable[13] = true;
-				break;
-				case 'o': truthTable[14] = true;
-				break;
-				case 'p': truthTable[15] = true;
-				break;
-				case 'q': truthTable[16] = true;
-				break;
-				case 'r': truthTable[17] = true;
-				break;
-				case 's': truthTable[18] = true;
-				break;
-				case 't': truthTable[19] = true;
-				break;
-				case 'u': truthTable[20] = true;
-				break;
-				case 'v': truthTable[21] = true;
-				break;
-				case 'w': truthTable[22] = true;
-				break;
-				case 'x': truthTable[23] = true;
-				break;
-				case 'y': truthTable[24] = true;
-				break;
-				case 'z': truthTable[25] = true;
-				break;
+				switch (string.charAt(i)) {
+				case 'a':
+					truthTable[0] = true;
+					break;
+				case 'b':
+					truthTable[1] = true;
+					break;
+				case 'c':
+					truthTable[2] = true;
+					break;
+				case 'd':
+					truthTable[3] = true;
+					break;
+				case 'e':
+					truthTable[4] = true;
+					break;
+				case 'f':
+					truthTable[5] = true;
+					break;
+				case 'g':
+					truthTable[6] = true;
+					break;
+				case 'h':
+					truthTable[7] = true;
+					break;
+				case 'i':
+					truthTable[8] = true;
+					break;
+				case 'j':
+					truthTable[9] = true;
+					break;
+				case 'k':
+					truthTable[10] = true;
+					break;
+				case 'l':
+					truthTable[11] = true;
+					break;
+				case 'm':
+					truthTable[12] = true;
+					break;
+				case 'n':
+					truthTable[13] = true;
+					break;
+				case 'o':
+					truthTable[14] = true;
+					break;
+				case 'p':
+					truthTable[15] = true;
+					break;
+				case 'q':
+					truthTable[16] = true;
+					break;
+				case 'r':
+					truthTable[17] = true;
+					break;
+				case 's':
+					truthTable[18] = true;
+					break;
+				case 't':
+					truthTable[19] = true;
+					break;
+				case 'u':
+					truthTable[20] = true;
+					break;
+				case 'v':
+					truthTable[21] = true;
+					break;
+				case 'w':
+					truthTable[22] = true;
+					break;
+				case 'x':
+					truthTable[23] = true;
+					break;
+				case 'y':
+					truthTable[24] = true;
+					break;
+				case 'z':
+					truthTable[25] = true;
+					break;
 				}
-				
+
 //				System.out.println(string.charAt(i));
 			}
-			for(int i = 0; i<truthTable.length; i++) {
-				if(truthTable[i]==false) {
-					isPangram =  false;
+			for (int i = 0; i < truthTable.length; i++) {
+				if (truthTable[i] == false) {
+					isPangram = false;
 				}
 			}
 

@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -403,6 +404,26 @@ public class EvaluationService {
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
 			// sort by using numbers
+			//start at middle
+			//compare the key value with the value at the middle
+			//if they match, return index or position
+			//else go to sub array either to the left or right 
+			// repeat for the middle of that array
+			//each time set up upper bound and lower bound
+			int val = Integer.valueOf(String.valueOf(t));
+			List<T> givenList = getSortedList();
+//			Iterator<String> crunchifyIterator = crunchifyList.iterator();
+			Iterator<T> sortedIterator = givenList.iterator()	;
+			
+			int i = 0;
+			while(sortedIterator.hasNext()) {
+				if(sortedIterator.next() == t) {
+					return i;
+				}
+				i++;
+			}
+
+			
 			return 0;
 		}
 
@@ -491,6 +512,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
+		//finds armstrong number
 		int length = String.valueOf(input).length();
 //		System.out.println(length);
 		int[] digits = new int[length];
@@ -1173,12 +1195,12 @@ public class EvaluationService {
 	public Temporal getGigasecondDate(Temporal given) {
 		// In case,time not included
 		if (given instanceof LocalDate) {
-			LocalDateTime time = LocalDateTime.of((LocalDate) given, LocalTime.MIN);
-			return time.plus(Duration.ofSeconds(1000000000l));
+			LocalDateTime timePeriod = LocalDateTime.of((LocalDate) given, LocalTime.MIN);
+			return timePeriod.plus(Duration.ofSeconds(1000000000l));
 		}
 		// if time is included
-		LocalDateTime time = LocalDateTime.from(given);
-		return time.plus(Duration.ofSeconds(1000000000l));
+		LocalDateTime timePeriod = LocalDateTime.from(given);
+		return timePeriod.plus(Duration.ofSeconds(1000000000l));
 	}
 
 	/**

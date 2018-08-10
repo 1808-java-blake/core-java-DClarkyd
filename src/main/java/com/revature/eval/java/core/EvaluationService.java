@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,7 @@ public class EvaluationService {
 		char[] acronym = new char[phrase.length()];
 		int numOfLetters = 0;
 		String s = "";
-		
+
 		for (int i = 0; i < phrase.length(); i++) {
 			char letter = phrase.charAt(i);
 			System.out.println(Character.isUpperCase(letter));
@@ -342,15 +343,17 @@ public class EvaluationService {
 		// TODO count each repeated word
 		String[] words = string.split(" ");
 		Map<String, Integer> wordsAndNumbers = new HashMap<String, Integer>();
-
-		for (String word : words) {
-			if (true) {
-				int count = wordsAndNumbers.get(int.class);
-				count++;
-				wordsAndNumbers.put(word, count);
+		int foundNumber = 0;
+		for (int i = 0; i < words.length; i++) {
+			if (!wordsAndNumbers.containsKey(words[i])) {
+				wordsAndNumbers.put(words[i], 1);
+			} else {
+				int a = wordsAndNumbers.get(words[i]);
+				System.out.println(a);
+				wordsAndNumbers.put(words[i], a + 1);
 			}
 		}
-		return null;
+		return wordsAndNumbers;
 	}
 
 	/**
@@ -511,8 +514,22 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
-		return null;
+//finds the prime factors of a number
+		List<Long> factors = new ArrayList<Long>();
+
+		if (l > 1 && l % 2 == 0) {
+		}
+		int i = 2;
+		while (l - 1 > 0) {
+			if (l % i == 0) {
+				factors.add((long) i);
+				l = l / i;
+			} else {
+				i++;
+			}
+		}
+
+		return factors;
 	}
 
 	/**
@@ -605,390 +622,393 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
-	public int calculateNthPrime(int i) {
-		if (i == 0) {
+	public int calculateNthPrime(int n) {
+		if (n == 0) {
 			throw new IllegalArgumentException();
 		}
-		int[] primes = new int[i];
-		boolean isPrime = false;
-		int x = 1;
-		for (int j = 0; j < i; j++) {
-			isPrime = false;
-			while (!isPrime) {
-				x++;
-				for (int k = 2; k * 2 < x; k++) {
-					if (x % k == 0) {
-						isPrime = true;
-						primes[j] = x;
-					}
-				}
-			}
+		if (n == 1) {
+			return 2;
 		}
 
-		return primes[i - 1];
+		int j = 0;
+		int i =2;
+		int test =1;
+		
+		  while (j < n){
+		      test=test+1;
+		      for (i = 2; i <= test; i++){
+		        if (test % i == 0) {
+		          break;
+		        }
+		      }
+		      if ( i == test){
+		        j = j+1;
+		      }
+		    }
+			return test;
+}
 
+/**
+ * 13 & 14. Create an implementation of the atbash cipher, an ancient encryption
+ * system created in the Middle East.
+ * 
+ * The Atbash cipher is a simple substitution cipher that relies on transposing
+ * all the letters in the alphabet such that the resulting alphabet is
+ * backwards. The first letter is replaced with the last letter, the second with
+ * the second-last, and so on.
+ * 
+ * An Atbash cipher for the Latin alphabet would be as follows:
+ * 
+ * Plain: abcdefghijklmnopqrstuvwxyz Cipher: zyxwvutsrqponmlkjihgfedcba It is a
+ * very weak cipher because it only has one possible key, and it is a simple
+ * monoalphabetic substitution cipher. However, this may not have been an issue
+ * in the cipher's time.
+ * 
+ * Ciphertext is written out in groups of fixed length, the traditional group
+ * size being 5 letters, and punctuation is excluded. This is to make it harder
+ * to guess things based on word boundaries.
+ * 
+ * Examples Encoding test gives gvhg Decoding gvhg gives test Decoding gsvjf
+ * rxpyi ldmul cqfnk hlevi gsvoz abwlt gives thequickbrownfoxjumpsoverthelazydog
+ *
+ */
+static class AtbashCipher {
+
+	/**
+	 * Question 13
+	 * 
+	 * @param string
+	 * @return
+	 */
+	public static String encode(String string) {
+		// encodes the text
+
+		string = string.replaceAll(" ", "");
+		string = string.toLowerCase();
+		string = string.replaceAll("\\W", "");
+		String encoded = "";
+		int spacesCounter = -1;
+		for (int i = 0; i < string.length(); i++) {
+			char letter = string.charAt(i);
+			spacesCounter++;
+			if (spacesCounter % 5 == 0 && spacesCounter != 0) {
+				encoded += " ";
+			}
+			switch (letter) {
+			case '0':
+				letter = '0';
+				encoded += letter;
+				break;
+			case '1':
+				letter = '1';
+				encoded += letter;
+				break;
+			case '2':
+				letter = '2';
+				encoded += letter;
+				break;
+			case '3':
+				letter = '3';
+				encoded += letter;
+				break;
+			case '4':
+				letter = '4';
+				encoded += letter;
+				break;
+			case '5':
+				letter = '5';
+				encoded += letter;
+				break;
+			case '6':
+				letter = '6';
+				encoded += letter;
+				break;
+			case '7':
+				letter = '7';
+				encoded += letter;
+				break;
+			case '8':
+				letter = '8';
+				encoded += letter;
+				break;
+			case '9':
+				letter = '9';
+				encoded += letter;
+				break;
+			case 'a':
+				letter = 'z';
+				encoded += letter;
+				break;
+			case 'b':
+				letter = 'y';
+				encoded += letter;
+				break;
+			case 'c':
+				letter = 'x';
+				encoded += letter;
+				break;
+			case 'd':
+				letter = 'w';
+				encoded += letter;
+				break;
+			case 'e':
+				letter = 'v';
+				encoded += letter;
+				break;
+			case 'f':
+				letter = 'u';
+				encoded += letter;
+				break;
+			case 'g':
+				letter = 't';
+				encoded += letter;
+				break;
+			case 'h':
+				letter = 's';
+				encoded += letter;
+				break;
+			case 'i':
+				letter = 'r';
+				encoded += letter;
+				break;
+			case 'j':
+				letter = 'q';
+				encoded += letter;
+				break;
+			case 'k':
+				letter = 'p';
+				encoded += letter;
+				break;
+			case 'l':
+				letter = 'o';
+				encoded += letter;
+				break;
+			case 'm':
+				letter = 'n';
+				encoded += letter;
+				break;
+			case 'n':
+				letter = 'm';
+				encoded += letter;
+				break;
+			case 'o':
+				letter = 'l';
+				encoded += letter;
+				break;
+			case 'p':
+				letter = 'k';
+				encoded += letter;
+				break;
+			case 'q':
+				letter = 'j';
+				encoded += letter;
+				break;
+			case 'r':
+				letter = 'i';
+				encoded += letter;
+				break;
+			case 's':
+				letter = 'h';
+				encoded += letter;
+				break;
+			case 't':
+				letter = 'g';
+				encoded += letter;
+				break;
+			case 'u':
+				letter = 'f';
+				encoded += letter;
+				break;
+			case 'v':
+				letter = 'e';
+				encoded += letter;
+				break;
+			case 'w':
+				letter = 'd';
+				encoded += letter;
+				break;
+			case 'x':
+				letter = 'c';
+				encoded += letter;
+				break;
+			case 'y':
+				letter = 'b';
+				encoded += letter;
+				break;
+			case 'z':
+				letter = 'a';
+				encoded += letter;
+				break;
+			}
+
+		}
+
+		return encoded;
 	}
 
 	/**
-	 * 13 & 14. Create an implementation of the atbash cipher, an ancient encryption
-	 * system created in the Middle East.
+	 * Question 14
 	 * 
-	 * The Atbash cipher is a simple substitution cipher that relies on transposing
-	 * all the letters in the alphabet such that the resulting alphabet is
-	 * backwards. The first letter is replaced with the last letter, the second with
-	 * the second-last, and so on.
-	 * 
-	 * An Atbash cipher for the Latin alphabet would be as follows:
-	 * 
-	 * Plain: abcdefghijklmnopqrstuvwxyz Cipher: zyxwvutsrqponmlkjihgfedcba It is a
-	 * very weak cipher because it only has one possible key, and it is a simple
-	 * monoalphabetic substitution cipher. However, this may not have been an issue
-	 * in the cipher's time.
-	 * 
-	 * Ciphertext is written out in groups of fixed length, the traditional group
-	 * size being 5 letters, and punctuation is excluded. This is to make it harder
-	 * to guess things based on word boundaries.
-	 * 
-	 * Examples Encoding test gives gvhg Decoding gvhg gives test Decoding gsvjf
-	 * rxpyi ldmul cqfnk hlevi gsvoz abwlt gives thequickbrownfoxjumpsoverthelazydog
-	 *
+	 * @param string
+	 * @return
 	 */
-	static class AtbashCipher {
+	public static String decode(String string) {
+		// decodes the text
+		string = string.replaceAll(" ", "");
+		String decoded = "";
+		for (int i = 0; i < string.length(); i++) {
+			char letter = string.charAt(i);
 
-		/**
-		 * Question 13
-		 * 
-		 * @param string
-		 * @return
-		 */
-		public static String encode(String string) {
-			// encodes the text
-
-			string = string.replaceAll(" ", "");
-			string = string.toLowerCase();
-			string = string.replaceAll("\\W", "");
-			String encoded = "";
-			int spacesCounter = -1;
-			for (int i = 0; i < string.length(); i++) {
-				char letter = string.charAt(i);
-				spacesCounter++;
-				if (spacesCounter % 5 == 0 && spacesCounter != 0) {
-					encoded += " ";
-				}
-				switch (letter) {
-				case '0':
-					letter = '0';
-					encoded += letter;
-					break;
-				case '1':
-					letter = '1';
-					encoded += letter;
-					break;
-				case '2':
-					letter = '2';
-					encoded += letter;
-					break;
-				case '3':
-					letter = '3';
-					encoded += letter;
-					break;
-				case '4':
-					letter = '4';
-					encoded += letter;
-					break;
-				case '5':
-					letter = '5';
-					encoded += letter;
-					break;
-				case '6':
-					letter = '6';
-					encoded += letter;
-					break;
-				case '7':
-					letter = '7';
-					encoded += letter;
-					break;
-				case '8':
-					letter = '8';
-					encoded += letter;
-					break;
-				case '9':
-					letter = '9';
-					encoded += letter;
-					break;
-				case 'a':
-					letter = 'z';
-					encoded += letter;
-					break;
-				case 'b':
-					letter = 'y';
-					encoded += letter;
-					break;
-				case 'c':
-					letter = 'x';
-					encoded += letter;
-					break;
-				case 'd':
-					letter = 'w';
-					encoded += letter;
-					break;
-				case 'e':
-					letter = 'v';
-					encoded += letter;
-					break;
-				case 'f':
-					letter = 'u';
-					encoded += letter;
-					break;
-				case 'g':
-					letter = 't';
-					encoded += letter;
-					break;
-				case 'h':
-					letter = 's';
-					encoded += letter;
-					break;
-				case 'i':
-					letter = 'r';
-					encoded += letter;
-					break;
-				case 'j':
-					letter = 'q';
-					encoded += letter;
-					break;
-				case 'k':
-					letter = 'p';
-					encoded += letter;
-					break;
-				case 'l':
-					letter = 'o';
-					encoded += letter;
-					break;
-				case 'm':
-					letter = 'n';
-					encoded += letter;
-					break;
-				case 'n':
-					letter = 'm';
-					encoded += letter;
-					break;
-				case 'o':
-					letter = 'l';
-					encoded += letter;
-					break;
-				case 'p':
-					letter = 'k';
-					encoded += letter;
-					break;
-				case 'q':
-					letter = 'j';
-					encoded += letter;
-					break;
-				case 'r':
-					letter = 'i';
-					encoded += letter;
-					break;
-				case 's':
-					letter = 'h';
-					encoded += letter;
-					break;
-				case 't':
-					letter = 'g';
-					encoded += letter;
-					break;
-				case 'u':
-					letter = 'f';
-					encoded += letter;
-					break;
-				case 'v':
-					letter = 'e';
-					encoded += letter;
-					break;
-				case 'w':
-					letter = 'd';
-					encoded += letter;
-					break;
-				case 'x':
-					letter = 'c';
-					encoded += letter;
-					break;
-				case 'y':
-					letter = 'b';
-					encoded += letter;
-					break;
-				case 'z':
-					letter = 'a';
-					encoded += letter;
-					break;
-				}
-
+			switch (letter) {
+			case '0':
+				letter = '0';
+				decoded += letter;
+				break;
+			case '1':
+				letter = '1';
+				decoded += letter;
+				break;
+			case '2':
+				letter = '2';
+				decoded += letter;
+				break;
+			case '3':
+				letter = '3';
+				decoded += letter;
+				break;
+			case '4':
+				letter = '4';
+				decoded += letter;
+				break;
+			case '5':
+				letter = '5';
+				decoded += letter;
+				break;
+			case '6':
+				letter = '6';
+				decoded += letter;
+				break;
+			case '7':
+				letter = '7';
+				decoded += letter;
+				break;
+			case '8':
+				letter = '8';
+				decoded += letter;
+				break;
+			case '9':
+				letter = '9';
+				decoded += letter;
+				break;
+			case 'a':
+				letter = 'z';
+				decoded += letter;
+				break;
+			case 'b':
+				letter = 'y';
+				decoded += letter;
+				break;
+			case 'c':
+				letter = 'x';
+				decoded += letter;
+				break;
+			case 'd':
+				letter = 'w';
+				decoded += letter;
+				break;
+			case 'e':
+				letter = 'v';
+				decoded += letter;
+				break;
+			case 'f':
+				letter = 'u';
+				decoded += letter;
+				break;
+			case 'g':
+				letter = 't';
+				decoded += letter;
+				break;
+			case 'h':
+				letter = 's';
+				decoded += letter;
+				break;
+			case 'i':
+				letter = 'r';
+				decoded += letter;
+				break;
+			case 'j':
+				letter = 'q';
+				decoded += letter;
+				break;
+			case 'k':
+				letter = 'p';
+				decoded += letter;
+				break;
+			case 'l':
+				letter = 'o';
+				decoded += letter;
+				break;
+			case 'm':
+				letter = 'n';
+				decoded += letter;
+				break;
+			case 'n':
+				letter = 'm';
+				decoded += letter;
+				break;
+			case 'o':
+				letter = 'l';
+				decoded += letter;
+				break;
+			case 'p':
+				letter = 'k';
+				decoded += letter;
+				break;
+			case 'q':
+				letter = 'j';
+				decoded += letter;
+				break;
+			case 'r':
+				letter = 'i';
+				decoded += letter;
+				break;
+			case 's':
+				letter = 'h';
+				decoded += letter;
+				break;
+			case 't':
+				letter = 'g';
+				decoded += letter;
+				break;
+			case 'u':
+				letter = 'f';
+				decoded += letter;
+				break;
+			case 'v':
+				letter = 'e';
+				decoded += letter;
+				break;
+			case 'w':
+				letter = 'd';
+				decoded += letter;
+				break;
+			case 'x':
+				letter = 'c';
+				decoded += letter;
+				break;
+			case 'y':
+				letter = 'b';
+				decoded += letter;
+				break;
+			case 'z':
+				letter = 'a';
+				decoded += letter;
+				break;
 			}
-
-			return encoded;
 		}
+		return decoded;
+	}
 
-		/**
-		 * Question 14
-		 * 
-		 * @param string
-		 * @return
-		 */
-		public static String decode(String string) {
-			// decodes the text
-			string = string.replaceAll(" ", "");
-			String decoded = "";
-			for (int i = 0; i < string.length(); i++) {
-				char letter = string.charAt(i);
-
-				switch (letter) {
-				case '0':
-					letter = '0';
-					decoded += letter;
-					break;
-				case '1':
-					letter = '1';
-					decoded += letter;
-					break;
-				case '2':
-					letter = '2';
-					decoded += letter;
-					break;
-				case '3':
-					letter = '3';
-					decoded += letter;
-					break;
-				case '4':
-					letter = '4';
-					decoded += letter;
-					break;
-				case '5':
-					letter = '5';
-					decoded += letter;
-					break;
-				case '6':
-					letter = '6';
-					decoded += letter;
-					break;
-				case '7':
-					letter = '7';
-					decoded += letter;
-					break;
-				case '8':
-					letter = '8';
-					decoded += letter;
-					break;
-				case '9':
-					letter = '9';
-					decoded += letter;
-					break;
-				case 'a':
-					letter = 'z';
-					decoded += letter;
-					break;
-				case 'b':
-					letter = 'y';
-					decoded += letter;
-					break;
-				case 'c':
-					letter = 'x';
-					decoded += letter;
-					break;
-				case 'd':
-					letter = 'w';
-					decoded += letter;
-					break;
-				case 'e':
-					letter = 'v';
-					decoded += letter;
-					break;
-				case 'f':
-					letter = 'u';
-					decoded += letter;
-					break;
-				case 'g':
-					letter = 't';
-					decoded += letter;
-					break;
-				case 'h':
-					letter = 's';
-					decoded += letter;
-					break;
-				case 'i':
-					letter = 'r';
-					decoded += letter;
-					break;
-				case 'j':
-					letter = 'q';
-					decoded += letter;
-					break;
-				case 'k':
-					letter = 'p';
-					decoded += letter;
-					break;
-				case 'l':
-					letter = 'o';
-					decoded += letter;
-					break;
-				case 'm':
-					letter = 'n';
-					decoded += letter;
-					break;
-				case 'n':
-					letter = 'm';
-					decoded += letter;
-					break;
-				case 'o':
-					letter = 'l';
-					decoded += letter;
-					break;
-				case 'p':
-					letter = 'k';
-					decoded += letter;
-					break;
-				case 'q':
-					letter = 'j';
-					decoded += letter;
-					break;
-				case 'r':
-					letter = 'i';
-					decoded += letter;
-					break;
-				case 's':
-					letter = 'h';
-					decoded += letter;
-					break;
-				case 't':
-					letter = 'g';
-					decoded += letter;
-					break;
-				case 'u':
-					letter = 'f';
-					decoded += letter;
-					break;
-				case 'v':
-					letter = 'e';
-					decoded += letter;
-					break;
-				case 'w':
-					letter = 'd';
-					decoded += letter;
-					break;
-				case 'x':
-					letter = 'c';
-					decoded += letter;
-					break;
-				case 'y':
-					letter = 'b';
-					decoded += letter;
-					break;
-				case 'z':
-					letter = 'a';
-					decoded += letter;
-					break;
-				}
-			}
-			return decoded;
-		}
 	}
 
 	/**
@@ -1227,7 +1247,48 @@ public class EvaluationService {
 	 */
 	public boolean isLuhnValid(String string) {
 		// TODO Write an implementation for this method declaration
-		return false;
+		string = string.replaceAll("\\s+", "");
+
+		String reverse = "";
+		char doubler = 0;
+		int doubled = 0;
+		int secondCounter = 1;
+		int sum = 0;
+		int[] cardNumber = new int[string.length()];
+		int sumValue;
+		for (int i = string.length() - 1; i >= 0; i--) {
+
+			if (secondCounter % 2 == 0) {
+				doubler = string.charAt(i);
+
+				doubled = Character.getNumericValue(doubler);
+
+				doubled = doubled * 2;
+
+				if (doubled > 9) {
+					doubled = doubled - 9;
+				}
+				reverse += doubled;
+			}
+
+			else {
+				reverse += string.charAt(i);
+			}
+			secondCounter++;
+//			System.out.println(reverse);
+		}
+		for (int i = 0; i < string.length(); i++) {
+			sumValue = Character.getNumericValue(reverse.charAt(i));
+			sum += sumValue;
+			System.out.println(sum);
+			if (sum % 10 == 0) {
+				return true;
+			}
+		}
+		if (sum % 10 == 0) {
+			return true;
+		} else
+			return false;
 	}
 
 	/**
@@ -1266,12 +1327,17 @@ public class EvaluationService {
 		int two = 1;
 		if (word[2].contains("-")) {
 			one = -1;
-//			System.out.println(one);
 		}
-		if (word[4].contains("-") || word[5].contains("-")) {
+
+		if (word.length == 6) {
+			if (word[5].contains("-")) {
+				two = -1;
+			}
+		}
+		if (word[4].contains("-")) {
 			two = -1;
-//			System.out.println(two);
 		}
+
 		for (int i = 2; i < word.length; i++) {
 			word[i] = word[i].replaceAll("\\W", "");
 		}
